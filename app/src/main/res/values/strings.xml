@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MoBoole</string>
+
+    <string name="title_activity_login">Login</string>
+
+    <string name="prefs_file">net.dean.jraw.prefs_file</string>
 </resources>
