@@ -1,7 +1,9 @@
 package xyz.janficko.moboole.ui.home;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +17,7 @@ import net.dean.jraw.http.oauth.Credentials;
 import net.dean.jraw.http.oauth.OAuthException;
 
 import xyz.janficko.moboole.R;
-import xyz.janficko.moboole.utils.Logger;
+import xyz.janficko.moboole.ui.intro.IntroActivity;
 
 public class MainActivity extends AppCompatActivity {
 	public static final String TAG = "JRAW_EXAMPLE";
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+
 	}
 
 	public void login(View view) {

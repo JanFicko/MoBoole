@@ -4,4 +4,14 @@
     <string name="title_activity_login">Login</string>
 
     <string name="prefs_file">net.dean.jraw.prefs_file</string>
+
+    <!-- INTRO -->
+    <string name="title_intro1">Welcome to MoBoole!</string>
+    <string name="description_intro1">This app was created with the purpose of comparing development for Android and Android TV platforms.</string>
+    <string name="title_intro2">Privacy policy</string>
+    <string name="description_intro2">This app was created with the purpose of comparing development for Android and Android TV platforms.</string>
+    <string name="title_intro3">Welcome to MoBoole!</string>
+    <string name="description_intro3">This app was created with the purpose of comparing development for Android and Android TV platforms.</string>
+
+    <!-- INTRO -->
 </resources>

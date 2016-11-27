@@ -1,4 +1,4 @@
-package xyz.janficko.moboole.utils;
+package xyz.janficko.moboole.util;
 
 
 import android.util.Log;

@@ -1,4 +1,4 @@
-package xyz.janficko.moboole.utils.JrawWrapper;
+package xyz.janficko.moboole.util.JrawWrapper;
 
 import android.content.Context;
 import android.content.SharedPreferences;

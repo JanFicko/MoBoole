@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!-- MAIN PALETTE -->
+    <color name="colorPrimaryDark">@color/cyan700</color>
+    <color name="colorPrimary">@color/cyan500</color>
+    <color name="colorAccent">@color/orangeA200</color>
+
+    <!-- BASIC -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- CYAN -->
+    <color name="cyan300">#4DD0E1</color>
+    <color name="cyan500">#00BCD4</color>
+    <color name="cyan700">#0097A7</color>
+
+    <!-- ORANGE -->
+    <color name="orange500">#FF5722</color>
+    <color name="orangeA200">#FF6E40</color>
+
+    <!-- GREY -->
+    <color name="grey500">#9E9E9E</color>
+
+    <!-- BLUE GREY -->
+    <color name="bluegrey500">#607D8B</color>
+
 </resources>
