@@ -25,6 +25,8 @@ import xyz.janficko.moboole.R;
 
 public class LoginActivity extends AppCompatActivity {
 
+	private static final String TAG = LoginActivity.class.getSimpleName();
+
 	public static final Credentials CREDENTIALS = Credentials.installedApp(BuildConfig.CLIENT_ID, BuildConfig.REDIRECT);
 
 	@BindView(R.id.webview)

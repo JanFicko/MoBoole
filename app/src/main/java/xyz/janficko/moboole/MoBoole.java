@@ -11,6 +11,8 @@ import xyz.janficko.moboole.util.JrawWrapper.AndroidTokenStore;
 
 public class MoBoole extends Application {
 
+	private static final String TAG = MoBoole.class.getSimpleName();
+
 	@Override
 	public void onCreate() {
 		super.onCreate();

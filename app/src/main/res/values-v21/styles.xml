@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App's main theme -->
+    <style name="MoBooleTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <!-- Bottom bar theme -->
+    <style name="MoBooleTheme.TransNav" parent="MoBooleTheme">
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+</resources>

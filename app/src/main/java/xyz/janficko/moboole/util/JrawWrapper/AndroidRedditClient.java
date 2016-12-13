@@ -19,6 +19,8 @@ import xyz.janficko.moboole.BuildConfig;
  * manifest.
  */
 public class AndroidRedditClient extends RedditClient {
+
+	private static final String TAG = AndroidRedditClient.class.getSimpleName();
 	private static final String KEY_USER_AGENT_OVERRIDE = "net.dean.jraw.USER_AGENT_OVERRIDE";
 	private static final String KEY_REDDIT_USERNAME = "net.dean.jraw.REDDIT_USERNAME";
 	private static final String PLATFORM = "android";

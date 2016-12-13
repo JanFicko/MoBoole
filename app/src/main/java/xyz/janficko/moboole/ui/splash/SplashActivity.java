@@ -8,8 +8,12 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import xyz.janficko.moboole.ui.home.MainActivity;
 import xyz.janficko.moboole.ui.intro.IntroActivity;
+import xyz.janficko.moboole.util.Logger;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -19,33 +23,19 @@ public class SplashActivity extends AppCompatActivity {
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		Thread t = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				SharedPreferences getPrefs = PreferenceManager
-						.getDefaultSharedPreferences(getBaseContext());
-
-				boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
-
-				if (isFirstStart) {
-
-					Intent i = new Intent(SplashActivity.this, IntroActivity.class);
-					startActivity(i);
-
-					SharedPreferences.Editor e = getPrefs.edit();
-
-					e.putBoolean("firstStart", false);
-
-					e.apply();
-				} else {
-					Intent i = new Intent(SplashActivity.this, MainActivity.class);
-					startActivity(i);
-				}
+		SharedPreferences getPrefs = PreferenceManager
+				.getDefaultSharedPreferences(getBaseContext());
+		boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
+		if (isFirstStart) {
+			Intent i = new Intent(SplashActivity.this, IntroActivity.class);
+			startActivity(i);
+			SharedPreferences.Editor e = getPrefs.edit();
+			e.putBoolean("firstStart", false);
+			e.apply();
+		} else {
+			Intent i = new Intent(SplashActivity.this, MainActivity.class);
+			startActivity(i);
 			}
-		});
-		t.start();
-
-		SystemClock.sleep(1000);
 		finish();
 	}
 }

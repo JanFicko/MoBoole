@@ -2,6 +2,10 @@
     <string name="app_name">MoBoole</string>
 
     <string name="title_activity_login">Login</string>
+    <string name="title_frontpage">Frontpage</string>
+    <string name="title_submark">Submark</string>
+    <string name="title_search">Search</string>
+    <string name="title_profile">Profile</string>
 
     <string name="prefs_file">net.dean.jraw.prefs_file</string>
 
@@ -13,5 +17,4 @@
     <string name="title_intro3">Welcome to MoBoole!</string>
     <string name="description_intro3">This app was created with the purpose of comparing development for Android and Android TV platforms.</string>
 
-    <!-- INTRO -->
 </resources>

@@ -9,8 +9,11 @@
     <dimen name="spacingSmall">8dp</dimen>
     <dimen name="spacingTiny">4dp</dimen>
 
+    <dimen name="spacingTab">60dp</dimen>
+
     <!-- Optional -->
     <dimen name="textTitle">20sp</dimen>
     <dimen name="textSubtitle">16sp</dimen>
     <dimen name="textHint">12sp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

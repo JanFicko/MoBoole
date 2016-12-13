@@ -12,6 +12,8 @@ import xyz.janficko.moboole.R;
 
 public class UserInfoActivity extends AppCompatActivity {
 
+	private static final String TAG = UserInfoActivity.class.getSimpleName();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

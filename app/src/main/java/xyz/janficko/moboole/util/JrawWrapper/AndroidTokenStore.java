@@ -12,6 +12,8 @@ import xyz.janficko.moboole.R;
  * Simple implementation of TokenStore that uses SharedPreferences
  */
 public class AndroidTokenStore implements TokenStore {
+
+	private static final String TAG = AndroidTokenStore.class.getSimpleName();
 	private final Context context;
 
 	public AndroidTokenStore(Context context) {

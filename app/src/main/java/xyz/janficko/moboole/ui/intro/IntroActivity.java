@@ -10,13 +10,14 @@ import android.view.View;
 import android.view.Window;
 
 import com.github.paolorotolo.appintro.AppIntro;
-import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
 import xyz.janficko.moboole.R;
 import xyz.janficko.moboole.ui.home.MainActivity;
 
-public class IntroActivity extends AppIntro2 {
+public class IntroActivity extends AppIntro {
+
+	private static final String TAG = IntroActivity.class.getSimpleName();
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,9 +37,7 @@ public class IntroActivity extends AppIntro2 {
 		// Here we load a string array with a camera permission, and tell the library to request permissions on slide 2
 		//askForPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_CONTACTS}, 2);
 
-		setFlowAnimation();
 		showStatusBar(false);
-		showSkipButton(false);
 
 	}
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_frontpage"
+        icon="@drawable/ic_frontpage"
+        title="@string/title_frontpage"/>
+    <tab
+        id="@+id/tab_submark"
+        icon="@drawable/ic_submark"
+        title="@string/title_submark"/>
+    <tab
+        id="@+id/tab_search"
+        icon="@drawable/ic_search"
+        title="@string/title_search"/>
+    <tab
+        id="@+id/tab_profile"
+        icon="@drawable/ic_profile"
+        title="@string/title_profile"/>
+</tabs>
