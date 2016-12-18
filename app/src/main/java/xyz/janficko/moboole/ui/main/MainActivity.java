@@ -1,47 +1,92 @@
-package xyz.janficko.moboole.ui.home;
+package xyz.janficko.moboole.ui.main;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.ActionBar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.janficko.moboole.R;
+import xyz.janficko.moboole.ui.profile.ProfileFragment;
 import xyz.janficko.moboole.ui.frontpage.FrontpageFragment;
+import xyz.janficko.moboole.ui.search.SearchFragment;
+import xyz.janficko.moboole.ui.submark.SubmarkFragment;
 import xyz.janficko.moboole.util.Logger;
+import xyz.janficko.moboole.util.NetworkUtil;
+import xyz.janficko.moboole.util.SnackbarFactory;
 
 public class MainActivity extends AppCompatActivity {
 
 	private static final String TAG = MainActivity.class.getSimpleName();
 	private FragmentTransaction fragmentTransaction;
 	private FrontpageFragment frontpageFragment;
+	private SubmarkFragment submarkFragment;
+	private SearchFragment searchFragment;
+	private ProfileFragment profileFragment;
+	private int currentTab;
 
+	@BindView(R.id.coordinatorLayout)
+	CoordinatorLayout coordinatorLayout;
 	@BindView(R.id.bottom_bar)
 	BottomBar bottomBar;
-
-	ArrayAdapter<String> mForecastAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		ButterKnife.bind(this);
 
 		setupToolbar();
+		setupBottomBar();
 
-		ButterKnife.bind(this);
+		if (!NetworkUtil.isNetworkAvailable(this)) {
+			SnackbarFactory.snackbarNoInternet(this, coordinatorLayout);
+			Logger.print(TAG, "false");
+		}
+	}
+
+	private void setupToolbar() {
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
+		setSupportActionBar(toolbar);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.action_sort_subreddit:
+				Logger.print(TAG, "Sort subreddit.");
+				break;
+			case R.id.action_search_subreddit:
+				Logger.print(TAG, "Search subreddit.");
+				break;
+			default:
+				Logger.printError(TAG, "Selected menu doesn't exist.");
+		}
+		return false;
+	}
+
+	private void setupBottomBar() {
 		bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
 			@Override
 			public void onTabSelected(@IdRes int tabId) {
@@ -49,44 +94,37 @@ public class MainActivity extends AppCompatActivity {
 				switch (tabId) {
 					case R.id.tab_frontpage:
 						Logger.print(TAG, "Frontpage.");
+						currentTab = R.id.tab_frontpage;
 						frontpageFragment = new FrontpageFragment();
 						fragmentTransaction.replace(R.id.content_container, frontpageFragment);
 						fragmentTransaction.commit();
 						break;
 					case R.id.tab_submark:
 						Logger.print(TAG, "Submark.");
-						/*SubmarkFragment submarkFragment = new SubmarkFragment();
-						getSupportFragmentManager()
-								.beginTransaction()
-								.replace(R.id.contentContainer, submarkFragment, submarkFragment.getClass().getSimpleName())
-								.addToBackStack(null).commit();*/
+						currentTab = R.id.tab_submark;
+						submarkFragment = new SubmarkFragment();
+						fragmentTransaction.replace(R.id.content_container, submarkFragment);
+						fragmentTransaction.commit();
 						break;
 					case R.id.tab_search:
 						Logger.print(TAG, "Search.");
+						currentTab = R.id.tab_search;
+						searchFragment = new SearchFragment();
+						fragmentTransaction.replace(R.id.content_container, searchFragment);
+						fragmentTransaction.commit();
 						break;
 					case R.id.tab_profile:
 						Logger.print(TAG, "Profile.");
+						currentTab = R.id.tab_profile;
+						profileFragment = new ProfileFragment();
+						fragmentTransaction.replace(R.id.content_container, profileFragment);
+						fragmentTransaction.commit();
 						break;
 					default:
-						Logger.print(TAG, "Selected tab doesn't exists.");
+						Logger.printError(TAG, "Selected tab doesn't exist.");
 				}
 			}
 		});
-	}
-
-	private void setupToolbar() {
-		/*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
-		toolbar.setPadding(0, getStatusBarHeight(), 0, 0);*/
-	}
-
-	public int getStatusBarHeight() {
-		int height = 0;
-		int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-		if (resourceId > 0) {
-			height = getResources().getDimensionPixelOffset(resourceId);
-		}
-		return height;
 	}
 
 	/*public void login(View view) {

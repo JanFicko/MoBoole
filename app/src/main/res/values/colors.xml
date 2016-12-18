@@ -8,6 +8,7 @@
     <!-- BASIC -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="red">#FF0000</color>
 
     <!-- CYAN -->
     <color name="cyan300">#4DD0E1</color>

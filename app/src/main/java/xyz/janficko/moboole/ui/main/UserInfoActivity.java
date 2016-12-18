@@ -1,4 +1,4 @@
-package xyz.janficko.moboole.ui.home;
+package xyz.janficko.moboole.ui.main;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

@@ -6,6 +6,9 @@
     <string name="title_submark">Submark</string>
     <string name="title_search">Search</string>
     <string name="title_profile">Profile</string>
+    <string name="title_sort">Sort</string>
+
+    <string name="error_no_internet">No internet connection!</string>
 
     <string name="prefs_file">net.dean.jraw.prefs_file</string>
 

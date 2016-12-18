@@ -1,19 +1,17 @@
 package xyz.janficko.moboole.ui.intro;
 
-import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.View;
 import android.view.Window;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
 import xyz.janficko.moboole.R;
-import xyz.janficko.moboole.ui.home.MainActivity;
+import xyz.janficko.moboole.ui.main.MainActivity;
 
 public class IntroActivity extends AppIntro {
 

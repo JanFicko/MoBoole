@@ -1,4 +1,4 @@
-package xyz.janficko.moboole.ui.home;
+package xyz.janficko.moboole.ui.main;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;

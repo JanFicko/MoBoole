@@ -4,9 +4,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,7 +31,7 @@ public class FrontpageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
 	@Override
 	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext())
-				.inflate(R.layout.card_view_thread, parent, false);
+				.inflate(R.layout.card_view, parent, false);
 		Logger.print(TAG, "onCreateView");
 		return new ItemViewHolder(view);
 	}
@@ -42,6 +42,7 @@ public class FrontpageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
 		((ItemViewHolder) holder).bind(m);
 		Logger.print(TAG, "onBindViewHolder");
 	}
+
 
 	@Override
 	public int getItemCount() {
@@ -55,8 +56,28 @@ public class FrontpageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
 
 	public static class ItemViewHolder extends RecyclerView.ViewHolder {
 
+		@BindView(R.id.text_subreddit)
+		TextView subreddit;
+		@BindView(R.id.text_source)
+		TextView source;
+		@BindView(R.id.text_submitted)
+		TextView submitted;
+		@BindView(R.id.text_user)
+		TextView user;
+		@BindView(R.id.text_link_flair)
+		TextView flair;
 		@BindView(R.id.text_title)
 		TextView title;
+		@BindView(R.id.text_comments)
+		TextView comments;
+		@BindView(R.id.image_comments)
+		ImageView iconComments;
+		@BindView(R.id.image_upvote)
+		ImageView iconUpvote;
+		@BindView(R.id.text_votes)
+		TextView votes;
+		@BindView(R.id.image_downvote)
+		ImageView iconDownvote;
 
 
 		public ItemViewHolder(View itemView) {
@@ -65,8 +86,15 @@ public class FrontpageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
 		}
 
 		public void bind(MockModel mockModel) {
-			Logger.print(TAG, "bind");
+			subreddit.setText(mockModel.getSubreddit());
+			source.setText(mockModel.getSource());
+			submitted.setText(mockModel.getSubmitted());
+			user.setText(mockModel.getUser());
+			flair.setText(mockModel.getLinkFlair());
 			title.setText(mockModel.getTitle());
+			comments.setText(String.valueOf(mockModel.getComments()));
+			votes.setText(String.valueOf(mockModel.getVotes()));
+
 		}
 	}
 

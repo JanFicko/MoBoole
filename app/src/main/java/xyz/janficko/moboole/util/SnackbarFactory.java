@@ -10,11 +10,22 @@ import xyz.janficko.moboole.R;
 
 public class SnackbarFactory {
 
-	public static Snackbar createSnackbar(Context context, View view, String message) {
-		Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);
-		ViewGroup group = (ViewGroup) snackbar.getView();
-		group.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
-		return snackbar;
+	public static void snackbarMessage(Context context, View view, String message) {
+		Snackbar snackbar = Snackbar
+				.make(view, message, Snackbar.LENGTH_LONG);
+		snackbar.show();
+	}
+
+	public static void snackbarNoInternet(Context context, View view) {
+		Snackbar snackbar = Snackbar
+				.make(view, R.string.error_no_internet, Snackbar.LENGTH_INDEFINITE)
+				.setAction("RETRY", new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+					}
+				});
+		snackbar.setActionTextColor(ContextCompat.getColor(context, R.color.colorAccent));
+		snackbar.show();
 	}
 
 }

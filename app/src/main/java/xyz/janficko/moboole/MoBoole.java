@@ -16,9 +16,12 @@ public class MoBoole extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-
 		RedditClient reddit = new AndroidRedditClient(this);
 		RefreshTokenHandler handler = new RefreshTokenHandler(new AndroidTokenStore(this), reddit);
 		AuthenticationManager.get().init(reddit, handler);
+	}
+
+	public void checkInternet() {
+
 	}
 }
