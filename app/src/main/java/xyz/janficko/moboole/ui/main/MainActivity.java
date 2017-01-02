@@ -1,7 +1,9 @@
 package xyz.janficko.moboole.ui.main;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -15,10 +17,18 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabSelectListener;
+
+import net.dean.jraw.auth.AuthenticationManager;
+import net.dean.jraw.auth.AuthenticationState;
+import net.dean.jraw.auth.NoSuchTokenException;
+import net.dean.jraw.http.oauth.Credentials;
+import net.dean.jraw.http.oauth.OAuthException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import xyz.janficko.moboole.MoBoole;
 import xyz.janficko.moboole.R;
 import xyz.janficko.moboole.ui.profile.ProfileFragment;
 import xyz.janficko.moboole.ui.frontpage.FrontpageFragment;
@@ -42,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 	CoordinatorLayout coordinatorLayout;
 	@BindView(R.id.bottom_bar)
 	BottomBar bottomBar;
+	@BindView(R.id.toolbar)
+	Toolbar toolbar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void setupToolbar() {
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
 		setSupportActionBar(toolbar);
 	}
@@ -91,9 +102,12 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onTabSelected(@IdRes int tabId) {
 				fragmentTransaction = getSupportFragmentManager().beginTransaction();
+				AppBarLayout.LayoutParams toolbarLayout = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
 				switch (tabId) {
 					case R.id.tab_frontpage:
 						Logger.print(TAG, "Frontpage.");
+						toolbarLayout.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL);
+
 						currentTab = R.id.tab_frontpage;
 						frontpageFragment = new FrontpageFragment();
 						fragmentTransaction.replace(R.id.content_container, frontpageFragment);
@@ -101,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 						break;
 					case R.id.tab_submark:
 						Logger.print(TAG, "Submark.");
+						toolbarLayout.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED);
 						currentTab = R.id.tab_submark;
 						submarkFragment = new SubmarkFragment();
 						fragmentTransaction.replace(R.id.content_container, submarkFragment);
@@ -108,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
 						break;
 					case R.id.tab_search:
 						Logger.print(TAG, "Search.");
+						toolbarLayout.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED);
 						currentTab = R.id.tab_search;
 						searchFragment = new SearchFragment();
 						fragmentTransaction.replace(R.id.content_container, searchFragment);
@@ -115,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
 						break;
 					case R.id.tab_profile:
 						Logger.print(TAG, "Profile.");
+						toolbarLayout.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED);
 						currentTab = R.id.tab_profile;
 						profileFragment = new ProfileFragment();
 						fragmentTransaction.replace(R.id.content_container, profileFragment);
@@ -133,13 +150,13 @@ public class MainActivity extends AppCompatActivity {
 
 	public void userInfo(View view) {
 		startActivity(new Intent(this, UserInfoActivity.class));
-	}
+	}*/
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		AuthenticationState state = AuthenticationManager.get().checkAuthState();
-		Log.d(TAG, "AuthenticationState for onResume(): " + state);
+		Logger.print(TAG, "AuthenticationState for onResume(): " + state);
 
 		switch (state) {
 			case READY:
@@ -150,25 +167,28 @@ public class MainActivity extends AppCompatActivity {
 			case NEED_REFRESH:
 				refreshAccessTokenAsync();
 				break;
+			default:
+				Logger.printError(TAG, "State doesn't exist.");
 		}
 	}
+
 
 	private void refreshAccessTokenAsync() {
 		new AsyncTask<Credentials, Void, Void>() {
 			@Override
 			protected Void doInBackground(Credentials... params) {
 				try {
-					AuthenticationManager.get().refreshAccessToken(LoginActivity.CREDENTIALS);
+					AuthenticationManager.get().refreshAccessToken(MoBoole.CREDENTIALS);
 				} catch (NoSuchTokenException | OAuthException e) {
-					Log.e(TAG, "Could not refresh access token", e);
+					Logger.printError(TAG, "Could not refresh access token" + e);
 				}
 				return null;
 			}
 
 			@Override
 			protected void onPostExecute(Void v) {
-				Log.d(TAG, "Reauthenticated");
+				Logger.print(TAG, "Reauthenticated");
 			}
 		}.execute();
-	}*/
+	}
 }

@@ -30,7 +30,7 @@
             android:name=".ui.main.MainActivity"
             android:theme="@style/MoBooleTheme.TransNav"/>
         <activity
-            android:name=".ui.main.LoginActivity"
+            android:name=".ui.profile.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/MoBooleTheme"/>
         <activity android:name=".ui.main.UserInfoActivity"/>
