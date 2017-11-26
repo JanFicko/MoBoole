@@ -1,23 +1,25 @@
 <resources>
     <string name="app_name">MoBoole</string>
 
-    <string name="title_activity_login">Login</string>
-    <string name="title_frontpage">Frontpage</string>
-    <string name="title_submark">Submark</string>
-    <string name="title_search">Search</string>
-    <string name="title_profile">Profile</string>
-    <string name="title_sort">Sort</string>
+    <string name="frontpage">Frontpage</string>
+    <string name="submark">Submark</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+    <string name="sort">Sort</string>
+    <string name="retry">Retry</string>
+    <string name="login">Login</string>
+    <string name="skip">Skip</string>
+    <string name="done">Done</string>
 
-    <string name="error_no_internet">No internet connection!</string>
-
-    <string name="prefs_file">net.dean.jraw.prefs_file</string>
-
-    <!-- INTRO -->
+    <!-- ONBOARDING -->
     <string name="title_intro1">Welcome to MoBoole!</string>
-    <string name="description_intro1">This app was created with the purpose of comparing development for Android and Android TV platforms.</string>
-    <string name="title_intro2">Privacy policy</string>
-    <string name="description_intro2">This app was created with the purpose of comparing development for Android and Android TV platforms.</string>
-    <string name="title_intro3">Welcome to MoBoole!</string>
-    <string name="description_intro3">This app was created with the purpose of comparing development for Android and Android TV platforms.</string>
+    <string name="description_intro1"></string>
+    <string name="title_intro2">Upvote / Downvote</string>
+    <string name="description_intro2">Upvote thread by swiping left and downvote by swiping right, as shown below.</string>
+    <string name="title_intro3">Submark</string>
+    <string name="description_intro3">You can save your most favourite subreddit to the \'Submark\' section. Default value is set to /r/all.</string>
+
+    <!-- ERRORS -->
+    <string name="error_no_internet">No internet connection!</string>
 
 </resources>

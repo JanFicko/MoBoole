@@ -6,7 +6,10 @@ import android.content.SharedPreferences;
 import net.dean.jraw.auth.NoSuchTokenException;
 import net.dean.jraw.auth.TokenStore;
 
+import xyz.janficko.moboole.MoBoole;
 import xyz.janficko.moboole.R;
+import xyz.janficko.moboole.common.Keys;
+import xyz.janficko.moboole.util.SharedPreferenceUtil;
 
 /**
  * Simple implementation of TokenStore that uses SharedPreferences
@@ -14,20 +17,16 @@ import xyz.janficko.moboole.R;
 public class AndroidTokenStore implements TokenStore {
 
 	private static final String TAG = AndroidTokenStore.class.getSimpleName();
-	private final Context context;
-
-	public AndroidTokenStore(Context context) {
-		this.context = context;
-	}
+	private SharedPreferenceUtil mSharedPreferenceUtil = MoBoole.getSharedPreferenceUtil();
 
 	@Override
 	public boolean isStored(String key) {
-		return getSharedPreferences().contains(key);
+		return mSharedPreferenceUtil.hasKey(key);
 	}
 
 	@Override
 	public String readToken(String key) throws NoSuchTokenException {
-		String token = getSharedPreferences().getString(key, null);
+		String token = mSharedPreferenceUtil.retrieveString(key, null);
 		if (token == null)
 			throw new NoSuchTokenException("Token for key '" + key + "' does not exist");
 		return token;
@@ -35,12 +34,7 @@ public class AndroidTokenStore implements TokenStore {
 
 	@Override
 	public void writeToken(String key, String token) {
-		getSharedPreferences().edit()
-				.putString(key, token)
-				.apply();
+		mSharedPreferenceUtil.saveString(key, token);
 	}
 
-	private SharedPreferences getSharedPreferences() {
-		return context.getSharedPreferences(context.getString(R.string.prefs_file), Context.MODE_PRIVATE);
-	}
 }

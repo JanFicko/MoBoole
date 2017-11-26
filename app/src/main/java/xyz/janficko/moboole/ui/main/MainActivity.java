@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +15,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabSelectListener;
 
 import net.dean.jraw.auth.AuthenticationManager;
@@ -36,7 +33,7 @@ import xyz.janficko.moboole.ui.search.SearchFragment;
 import xyz.janficko.moboole.ui.submark.SubmarkFragment;
 import xyz.janficko.moboole.util.Logger;
 import xyz.janficko.moboole.util.NetworkUtil;
-import xyz.janficko.moboole.util.SnackbarFactory;
+import xyz.janficko.moboole.util.SnackbarUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 		setupBottomBar();
 
 		if (!NetworkUtil.isNetworkAvailable(this)) {
-			SnackbarFactory.snackbarNoInternet(this, coordinatorLayout);
+			SnackbarUtil.snackbarNoInternet(this, coordinatorLayout);
 			Logger.print(TAG, "false");
 		}
 	}

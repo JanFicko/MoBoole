@@ -24,7 +24,7 @@
                 android:id="@+id/text_subreddit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/textHint"/>
+                android:textSize="@dimen/text_small"/>
 
             <TextView
                 android:id="@+id/text_source"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/text_subreddit"
                 android:layout_marginLeft="5dp"
-                android:textSize="@dimen/textHint"/>
+                android:textSize="@dimen/text_small"/>
 
             <TextView
                 android:id="@+id/text_submitted"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/text_source"
                 android:layout_marginLeft="5dp"
-                android:textSize="@dimen/textHint"/>
+                android:textSize="@dimen/text_small"/>
 
             <TextView
                 android:id="@+id/text_user"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/text_submitted"
                 android:layout_marginLeft="5dp"
-                android:textSize="@dimen/textHint"/>
+                android:textSize="@dimen/text_small"/>
 
             <TextView
                 android:id="@+id/text_link_flair"
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/text_user"
                 android:layout_marginLeft="5dp"
-                android:textSize="@dimen/textHint"/>
+                android:textSize="@dimen/text_small"/>
 
             <TextView
                 android:id="@+id/text_title"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_subreddit"
                 android:layout_marginTop="5dp"
-                android:textSize="@dimen/textTitle"
+                android:textSize="@dimen/text_large"
                 android:textColor="@color/black"/>
 
             <TextView
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_title"
                 android:layout_marginTop="5dp"
-                android:textSize="@dimen/textHint"/>
+                android:textSize="@dimen/text_small"/>
 
             <ImageView
                 android:id="@+id/image_comments"
@@ -105,7 +105,7 @@
                 android:layout_toRightOf="@id/image_upvote"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="2dp"
-                android:textSize="@dimen/textHint"/>
+                android:textSize="@dimen/text_small"/>
 
             <ImageView
                 android:id="@+id/image_downvote"

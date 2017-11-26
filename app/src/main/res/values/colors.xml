@@ -11,6 +11,7 @@
     <color name="red">#FF0000</color>
 
     <!-- TEAL -->
+    <color name="teal50">#E0F2F1</color>
     <color name="teal500">#009688</color>
     <color name="teal700">#00796B</color>
 
