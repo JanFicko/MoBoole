@@ -10,6 +10,7 @@
     <string name="login">Login</string>
     <string name="skip">Skip</string>
     <string name="done">Done</string>
+    <string name="start_now">Start now</string>
 
     <!-- ONBOARDING -->
     <string name="title_intro1">Welcome to MoBoole!</string>

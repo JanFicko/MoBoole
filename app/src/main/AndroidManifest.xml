@@ -33,9 +33,16 @@
             android:label="@string/login"
             android:theme="@style/MoBooleTheme"/>
         <activity android:name=".ui.main.UserInfoActivity"/>
+
         <meta-data
-            android:name="net.dean.jraw.REDDIT_USERNAME"
-            android:value="am1s"/>
+            android:name="net.dean.jraw.android.REDDIT_USERNAME"
+            android:value="am1s" />
+        <meta-data
+            android:name="net.dean.jraw.android.CLIENT_ID"
+            android:value="6vNtzGhUCowoXg" />
+        <meta-data
+            android:name="net.dean.jraw.android.REDIRECT_URL"
+            android:value="https://github.com/JanFicko/MoBoole" />
     </application>
 
 </manifest>

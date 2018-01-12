@@ -1,6 +1,7 @@
 package xyz.janficko.moboole.ui.frontpage;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.janficko.moboole.R;
 import xyz.janficko.moboole.model.MockModel;
-import xyz.janficko.moboole.util.Logger;
 
 
 public class FrontpageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -25,14 +25,14 @@ public class FrontpageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
 
 	public FrontpageRecyclerViewAdapter(List<MockModel> mockModelList) {
 		this.mockModelList = mockModelList;
-		Logger.print(TAG, "object");
+		Log.d(TAG, "object");
 	}
 
 	@Override
 	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext())
 				.inflate(R.layout.card_view, parent, false);
-		Logger.print(TAG, "onCreateView");
+		Log.d(TAG, "onCreateView");
 		return new ItemViewHolder(view);
 	}
 
@@ -40,13 +40,13 @@ public class FrontpageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
 	public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 		MockModel m = mockModelList.get(position);
 		((ItemViewHolder) holder).bind(m);
-		Logger.print(TAG, "onBindViewHolder");
+		Log.d(TAG, "onBindViewHolder");
 	}
 
 
 	@Override
 	public int getItemCount() {
-		Logger.print(TAG, "itemCount");
+		Log.d(TAG, "itemCount");
 		int size = mockModelList.size();
 		if (expandedItemPosition >= 0) {
 			//size += mockModelList.get(expandedItemPosition)

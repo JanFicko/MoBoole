@@ -1,12 +1,9 @@
 package xyz.janficko.moboole.ui.misc;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.widget.LinearLayout;
-
-import xyz.janficko.moboole.util.Logger;
+import android.util.Log;
 
 public class OnSwipeListener extends ItemTouchHelper.SimpleCallback {
 
@@ -52,9 +49,9 @@ public class OnSwipeListener extends ItemTouchHelper.SimpleCallback {
 	@Override
 	public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
 		if (direction == ItemTouchHelper.RIGHT) {
-			Logger.print(TAG, "DESNO - UPVOTE");
+			Log.d(TAG, "DESNO - UPVOTE");
 		} else if (direction == ItemTouchHelper.LEFT) {
-			Logger.print(TAG, "LEFT - DOWNVOTE");
+			Log.d(TAG, "LEFT - DOWNVOTE");
 		}
 	}
 }

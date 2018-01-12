@@ -8,4 +8,8 @@
     <dimen name="margin_large">24dp</dimen>
     <dimen name="margin_huge">48dp</dimen>
 
+    <!-- ONBOARDING -->
+    <dimen name="onboarding_circle_thickness">4dp</dimen>
+    <dimen name="onboarding_circle_radius">0dp</dimen>
+
 </resources>

@@ -4,21 +4,21 @@
     <item
         android:state_selected="true">
         <shape
-            android:innerRadius="0dp"
+            android:innerRadius="@dimen/onboarding_circle_radius"
             android:shape="ring"
-            android:thickness="4dp"
+            android:thickness="@dimen/onboarding_circle_thickness"
             android:useLevel="false">
-            <solid android:color="@color/colorAccent"/>
+            <solid android:color="@color/onBoardingSelected"/>
         </shape>
     </item>
 
     <item>
         <shape
-            android:innerRadius="0dp"
+            android:innerRadius="@dimen/onboarding_circle_radius"
             android:shape="ring"
-            android:thickness="4dp"
+            android:thickness="@dimen/onboarding_circle_thickness"
             android:useLevel="false">
-            <solid android:color="@color/white"/>
+            <solid android:color="@color/onBoardingUnselected"/>
         </shape>
     </item>
 

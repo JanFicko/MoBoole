@@ -1,4 +1,4 @@
-package xyz.janficko.moboole.ui.base;
+package xyz.janficko.moboole.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -28,13 +28,12 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(getLayoutResId(), container, false);
+        View view = inflater.inflate(setLayoutResId(), container, false);
         ButterKnife.bind(this, view);
         return view;
     }
 
-
     @LayoutRes
-    protected abstract int getLayoutResId();
+    protected abstract int setLayoutResId();
 
 }

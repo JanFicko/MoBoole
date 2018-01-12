@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- MAIN PALETTE -->
-    <color name="colorPrimaryDark">@color/teal700</color>
-    <color name="colorPrimary">@color/teal500</color>
+
+    <!-- MAIN -->
+    <color name="colorPrimaryDark">@color/blue900</color>
+    <color name="colorPrimary">@color/blue500</color>
     <color name="colorAccent">@color/orangeA200</color>
+
+    <!-- ONBOARDING -->
+    <color name="onBoardingBackground">@color/white</color>
+    <color name="onBoardingPrimaryDark">@color/black</color>
+    <color name="onBoardingPrimary">@color/grey300</color>
+    <color name="onBoardingSelected">@color/indigo900</color>
+    <color name="onBoardingUnselected">@color/indigo100</color>
 
     <!-- BASIC -->
     <color name="white">#FFFFFF</color>
@@ -20,13 +28,28 @@
     <color name="cyan500">#00BCD4</color>
     <color name="cyan700">#0097A7</color>
 
+    <!-- BLUE -->
+    <color name="blue100">#BBDEFB</color>
+    <color name="blue300">#64B5F6</color>
+    <color name="blue500">#2196F3</color>
+    <color name="blue800">#1565C0</color>
+    <color name="blue900">#0D47A1</color>
+
+    <!-- INDIGO -->
+    <color name="indigo100">#C5CAE9</color>
+    <color name="indigo500">#3F51B5</color>
+    <color name="indigo900">#1A237E</color>
+
     <!-- ORANGE -->
     <color name="orange500">#FF5722</color>
     <color name="orange800">#EF6C00</color>
     <color name="orangeA200">#FF6E40</color>
 
     <!-- GREY -->
+    <color name="grey100">#F5F5F5</color>
+    <color name="grey300">#E0E0E0</color>
     <color name="grey500">#9E9E9E</color>
+    <color name="grey800">#424242</color>
 
     <!-- BLUE GREY -->
     <color name="bluegrey500">#607D8B</color>

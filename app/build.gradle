@@ -10,7 +10,6 @@ android {
         versionCode 43
         versionName "0.4.3"
         archivesBaseName = "MoBoole-${versionCode}"
-
     }
     buildTypes {
         release {
@@ -19,10 +18,6 @@ android {
         }
         debug {
             versionNameSuffix "-DEBUG"
-        }
-        buildTypes.each {
-            it.buildConfigField "String", "CLIENT_ID", CLIENT_ID
-            it.buildConfigField "String", "REDIRECT", REDIRECT
         }
     }
     packagingOptions {
@@ -40,7 +35,12 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+
     testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:support-v4:26.1.0'
     compile 'com.android.support:recyclerview-v7:26.1.0'
@@ -50,11 +50,12 @@ dependencies {
     //compile 'com.google.firebase:firebase-crash:10.0.1'
     //compile 'com.squareup.okhttp3:okhttp:3.4.2'
     //compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'net.dean.jraw:JRAW:0.9.0'
+    compile 'net.dean.jraw:JRAW:1.0.0'
+    implementation 'net.dean.jraw:JRAW-Android:1.0.0'
     compile 'com.roughike:bottom-bar:2.0.2'
     compile 'com.google.code.gson:gson:2.8.2'
-    compile 'com.jakewharton:butterknife:8.4.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.jakewharton:butterknife:8.7.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 }
 
 //apply plugin: 'com.google.gms.google-services'

@@ -9,10 +9,9 @@
 
     <!-- OnBoarding screen theme -->
     <style name="OnBoardingTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:background">@color/onBoardingBackground</item>
+        <item name="colorPrimaryDark">@color/onBoardingPrimaryDark</item>
+        <item name="colorPrimary">@color/onBoardingPrimary</item>
     </style>
 
     <!-- MoBoole's main theme -->
@@ -50,6 +49,14 @@
         <item name="android:textSize">@dimen/text_huge</item>
     </style>
 
+    <style name="Text.Grey">
+        <item name="android:textColor">@color/grey800</item>
+    </style>
+
+    <style name="Text.Grey.Normal">
+        <item name="android:textSize">@dimen/text_normal</item>
+    </style>
+
     <style name="Text.White">
         <item name="android:textColor">@color/white</item>
     </style>
@@ -66,8 +73,24 @@
         <item name="android:textSize">@dimen/text_huge</item>
     </style>
 
+    <style name="Text.Indigo">
+        <item name="android:textColor">@color/indigo900</item>
+    </style>
+
+    <style name="Text.Indigo.Normal">
+        <item name="android:textSize">@dimen/text_normal</item>
+    </style>
+
+    <style name="Text.Indigo.Huge">
+        <item name="android:textSize">@dimen/text_huge</item>
+    </style>
+
     <style name="Button">
         <item name="android:background">@null</item>
+    </style>
+
+    <style name="Button.Grey">
+        <item name="android:background">@color/grey300</item>
     </style>
 
 </resources>

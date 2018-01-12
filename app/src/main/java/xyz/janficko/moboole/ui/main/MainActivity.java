@@ -1,41 +1,33 @@
 package xyz.janficko.moboole.ui.main;
 
-import android.os.AsyncTask;
-import android.os.Bundle;
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
-import net.dean.jraw.auth.AuthenticationManager;
-import net.dean.jraw.auth.AuthenticationState;
-import net.dean.jraw.auth.NoSuchTokenException;
-import net.dean.jraw.http.oauth.Credentials;
-import net.dean.jraw.http.oauth.OAuthException;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import xyz.janficko.moboole.MoBoole;
 import xyz.janficko.moboole.R;
+import xyz.janficko.moboole.ui.BaseActivity;
 import xyz.janficko.moboole.ui.profile.ProfileFragment;
 import xyz.janficko.moboole.ui.frontpage.FrontpageFragment;
 import xyz.janficko.moboole.ui.search.SearchFragment;
 import xyz.janficko.moboole.ui.submark.SubmarkFragment;
-import xyz.janficko.moboole.util.Logger;
 import xyz.janficko.moboole.util.NetworkUtil;
 import xyz.janficko.moboole.util.SnackbarUtil;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
 	private static final String TAG = MainActivity.class.getSimpleName();
 	private FragmentTransaction fragmentTransaction;
@@ -52,19 +44,42 @@ public class MainActivity extends AppCompatActivity {
 	@BindView(R.id.toolbar)
 	Toolbar toolbar;
 
+	public static void start(Context context) {
+	    Intent starter = new Intent(context, MainActivity.class);
+	    context.startActivity(starter);
+	}
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		ButterKnife.bind(this);
+	protected int setLayoutResId() {
+		return R.layout.activity_main;
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 
 		setupToolbar();
 		setupBottomBar();
 
 		if (!NetworkUtil.isNetworkAvailable(this)) {
 			SnackbarUtil.snackbarNoInternet(this, coordinatorLayout);
-			Logger.print(TAG, "false");
+            Log.d(TAG, "false");
 		}
+		/*AuthenticationState state = AuthenticationManager.get().checkAuthState();
+		Logger.print(TAG, "AuthenticationState for onResume(): " + state);
+
+		switch (state) {
+			case READY:
+				break;
+			case NONE:
+				Toast.makeText(MainActivity.this, "Log in first", Toast.LENGTH_SHORT).show();
+				break;
+			case NEED_REFRESH:
+				refreshAccessTokenAsync();
+				break;
+			default:
+				Logger.printError(TAG, "State doesn't exist.");
+		}*/
 	}
 
 	private void setupToolbar() {
@@ -83,13 +98,13 @@ public class MainActivity extends AppCompatActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.action_sort_subreddit:
-				Logger.print(TAG, "Sort subreddit.");
+                Log.d(TAG, "Sort subreddit.");
 				break;
 			case R.id.action_search_subreddit:
-				Logger.print(TAG, "Search subreddit.");
+                Log.d(TAG, "Search subreddit.");
 				break;
 			default:
-				Logger.printError(TAG, "Selected menu doesn't exist.");
+                Log.e(TAG, "Selected menu doesn't exist.");
 		}
 		return false;
 	}
@@ -102,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 				AppBarLayout.LayoutParams toolbarLayout = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
 				switch (tabId) {
 					case R.id.tab_frontpage:
-						Logger.print(TAG, "Frontpage.");
+                        Log.d(TAG, "Frontpage.");
 						toolbarLayout.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL);
 
 						currentTab = R.id.tab_frontpage;
@@ -111,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 						fragmentTransaction.commit();
 						break;
 					case R.id.tab_submark:
-						Logger.print(TAG, "Submark.");
+                        Log.d(TAG, "Submark.");
 						toolbarLayout.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED);
 						currentTab = R.id.tab_submark;
 						submarkFragment = new SubmarkFragment();
@@ -119,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 						fragmentTransaction.commit();
 						break;
 					case R.id.tab_search:
-						Logger.print(TAG, "Search.");
+                        Log.d(TAG, "Search.");
 						toolbarLayout.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED);
 						currentTab = R.id.tab_search;
 						searchFragment = new SearchFragment();
@@ -127,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 						fragmentTransaction.commit();
 						break;
 					case R.id.tab_profile:
-						Logger.print(TAG, "Profile.");
+                        Log.d(TAG, "Profile.");
 						toolbarLayout.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED);
 						currentTab = R.id.tab_profile;
 						profileFragment = new ProfileFragment();
@@ -135,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 						fragmentTransaction.commit();
 						break;
 					default:
-						Logger.printError(TAG, "Selected tab doesn't exist.");
+                        Log.e(TAG, "Selected tab doesn't exist.");
 				}
 			}
 		});
@@ -149,29 +164,8 @@ public class MainActivity extends AppCompatActivity {
 		startActivity(new Intent(this, UserInfoActivity.class));
 	}*/
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		AuthenticationState state = AuthenticationManager.get().checkAuthState();
-		Logger.print(TAG, "AuthenticationState for onResume(): " + state);
-
-		switch (state) {
-			case READY:
-				break;
-			case NONE:
-				Toast.makeText(MainActivity.this, "Log in first", Toast.LENGTH_SHORT).show();
-				break;
-			case NEED_REFRESH:
-				refreshAccessTokenAsync();
-				break;
-			default:
-				Logger.printError(TAG, "State doesn't exist.");
-		}
-	}
-
-
 	private void refreshAccessTokenAsync() {
-		new AsyncTask<Credentials, Void, Void>() {
+		/*new AsyncTask<Credentials, Void, Void>() {
 			@Override
 			protected Void doInBackground(Credentials... params) {
 				try {
@@ -186,6 +180,6 @@ public class MainActivity extends AppCompatActivity {
 			protected void onPostExecute(Void v) {
 				Logger.print(TAG, "Reauthenticated");
 			}
-		}.execute();
+		}.execute();*/
 	}
 }

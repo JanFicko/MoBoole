@@ -12,9 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import net.dean.jraw.auth.AuthenticationManager;
-import net.dean.jraw.models.LoggedInAccount;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.janficko.moboole.R;
@@ -46,31 +43,7 @@ public class ProfileFragment extends Fragment {
 			}
 		});
 
-		/*FetchUserInfoTask fetchUserInfoTask = new FetchUserInfoTask();
-		fetchUserInfoTask.execute(view);*/
-
 		return view;
-	}
-
-	private static class FetchUserInfoTask extends AsyncTask<View, Void, LoggedInAccount> {
-		private View view;
-
-		@Override
-		protected LoggedInAccount doInBackground(View... view) {
-			this.view = view[0];
-			return AuthenticationManager.get().getRedditClient().me();
-		}
-
-		@Override
-		protected void onPostExecute(LoggedInAccount data) {
-			((TextView) view.findViewById(R.id.user_name)).setText("Name: " + data.getFullName());
-			((TextView) view.findViewById(R.id.user_created)).setText("Created: " + data.getCreated());
-			((TextView) view.findViewById(R.id.user_link_karma)).setText("Link karma: " + data.getLinkKarma());
-			((TextView) view.findViewById(R.id.user_comment_karma)).setText("Comment karma: " + data.getCommentKarma());
-			((TextView) view.findViewById(R.id.user_has_mail)).setText("Has mail? " + (data.getInboxCount() > 0));
-			((TextView) view.findViewById(R.id.user_inbox_count)).setText("Inbox count: " + data.getInboxCount());
-			((TextView) view.findViewById(R.id.user_is_mod)).setText("Is mod? " + data.isMod());
-		}
 	}
 
 

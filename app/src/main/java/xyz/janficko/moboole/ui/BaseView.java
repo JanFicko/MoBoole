@@ -1,4 +1,4 @@
-package xyz.janficko.moboole.ui.base;
+package xyz.janficko.moboole.ui;
 
 public interface BaseView<T> {
 

@@ -1,27 +1,21 @@
 package xyz.janficko.moboole.ui.frontpage;
 
 import android.app.Activity;
-import android.content.ClipData;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
 import xyz.janficko.moboole.R;
 import xyz.janficko.moboole.model.MockModel;
 import xyz.janficko.moboole.ui.misc.OnSwipeListener;
-import xyz.janficko.moboole.util.Logger;
 
 public class FrontpageFragment extends Fragment {
 
