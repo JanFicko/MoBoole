@@ -14,15 +14,15 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment extends Fragment {
 
     protected String TAG = "";
-    protected Context mContext;
-    protected BaseActivity mBaseActivity;
+    protected Context context;
+    protected BaseActivity baseActivity;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         TAG = getClass().getSimpleName();
-        mContext = context;
-        mBaseActivity = (BaseActivity) context;
+        this.context = context;
+        this.baseActivity = (BaseActivity) context;
     }
 
     @Nullable

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- Splash screen theme -->
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/background_splash</item>
+        <item name="android:windowBackground">@drawable/bg_splash</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
@@ -19,11 +20,30 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="colorControlNormal">@color/white</item>
     </style>
 
     <!-- Bottom bar theme -->
     <style name="MoBooleTheme.TransNav" parent="MoBooleTheme" />
+
+    <style name="BottomBar">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/main_bottom_bar_height</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <!-- Button's theme -->
+    <style name="Button">
+        <item name="android:layout_height">@dimen/onboarding_button_height</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Button.Grey">
+        <item name="android:background">@drawable/bg_bt_grey</item>
+        <item name="android:textAppearance">@style/Text.Indigo.Normal</item>
+    </style>
 
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
@@ -83,14 +103,6 @@
 
     <style name="Text.Indigo.Huge">
         <item name="android:textSize">@dimen/text_huge</item>
-    </style>
-
-    <style name="Button">
-        <item name="android:background">@null</item>
-    </style>
-
-    <style name="Button.Grey">
-        <item name="android:background">@color/grey300</item>
     </style>
 
 </resources>

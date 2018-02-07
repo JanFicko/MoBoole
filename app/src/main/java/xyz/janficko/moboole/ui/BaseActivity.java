@@ -42,8 +42,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public void goToNextFragment(Fragment fragment) {}
-
-    public void goToPreviousFragment(Fragment fragment) {}
+    public void switchFragments(Fragment fromFragment, Fragment toFragment) {}
 
 }

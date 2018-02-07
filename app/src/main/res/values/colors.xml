@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- MAIN -->
-    <color name="colorPrimaryDark">@color/blue900</color>
-    <color name="colorPrimary">@color/blue500</color>
-    <color name="colorAccent">@color/orangeA200</color>
+    <!-- SPLASH -->
+    <color name="splashBackground">@color/white</color>
 
     <!-- ONBOARDING -->
     <color name="onBoardingBackground">@color/white</color>
     <color name="onBoardingPrimaryDark">@color/black</color>
     <color name="onBoardingPrimary">@color/grey300</color>
-    <color name="onBoardingSelected">@color/indigo900</color>
-    <color name="onBoardingUnselected">@color/indigo100</color>
+    <color name="onBoardingPageSelected">@color/indigo900</color>
+    <color name="onBoardingPageUnselected">@color/indigo100</color>
+    <color name="onBoardingButtonNormal">@color/grey300</color>
+    <color name="onBoardingButtonPressed">@color/grey400</color>
+
+    <!-- MAIN -->
+    <color name="colorPrimaryDark">@color/blue900</color>
+    <color name="colorPrimary">@color/blue500</color>
+    <color name="colorAccent">@color/orangeA200</color>
+
+
+
 
     <!-- BASIC -->
     <color name="white">#FFFFFF</color>
@@ -48,6 +56,7 @@
     <!-- GREY -->
     <color name="grey100">#F5F5F5</color>
     <color name="grey300">#E0E0E0</color>
+    <color name="grey400">#BDBDBD</color>
     <color name="grey500">#9E9E9E</color>
     <color name="grey800">#424242</color>
 

@@ -13,6 +13,6 @@
     <item
         android:id="@+id/action_search_subreddit"
         android:title="@string/search"
-        android:icon="@drawable/ic_search"
+        android:icon="@drawable/ic_search_indigo"
         app:showAsAction="always"/>
 </menu>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:state_selected="true">
+        <shape
+            android:innerRadius="@dimen/onboarding_circle_radius"
+            android:shape="ring"
+            android:thickness="@dimen/onboarding_circle_thickness"
+            android:useLevel="false">
+            <solid android:color="@color/onBoardingPageSelected"/>
+        </shape>
+    </item>
+
+    <item>
+        <shape
+            android:innerRadius="@dimen/onboarding_circle_radius"
+            android:shape="ring"
+            android:thickness="@dimen/onboarding_circle_thickness"
+            android:useLevel="false">
+            <solid android:color="@color/onBoardingPageUnselected"/>
+        </shape>
+    </item>
+
+</selector>

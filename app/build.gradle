@@ -8,7 +8,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 43
-        versionName "0.4.3"
+        versionName "0.4.6"
         archivesBaseName = "MoBoole-${versionCode}"
     }
     buildTypes {
@@ -52,7 +52,6 @@ dependencies {
     //compile 'org.greenrobot:eventbus:3.0.0'
     compile 'net.dean.jraw:JRAW:1.0.0'
     implementation 'net.dean.jraw:JRAW-Android:1.0.0'
-    compile 'com.roughike:bottom-bar:2.0.2'
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.jakewharton:butterknife:8.7.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'

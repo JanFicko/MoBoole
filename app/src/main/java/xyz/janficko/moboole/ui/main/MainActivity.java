@@ -2,47 +2,42 @@ package xyz.janficko.moboole.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.IdRes;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabSelectListener;
-
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.Fragment;
+import android.view.View;
+import android.widget.ImageView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import xyz.janficko.moboole.R;
 import xyz.janficko.moboole.ui.BaseActivity;
+import xyz.janficko.moboole.ui.frontpage.FrontPagePresenter;
 import xyz.janficko.moboole.ui.profile.ProfileFragment;
-import xyz.janficko.moboole.ui.frontpage.FrontpageFragment;
+import xyz.janficko.moboole.ui.frontpage.FrontPageFragment;
 import xyz.janficko.moboole.ui.search.SearchFragment;
 import xyz.janficko.moboole.ui.submark.SubmarkFragment;
-import xyz.janficko.moboole.util.NetworkUtil;
-import xyz.janficko.moboole.util.SnackbarUtil;
+import xyz.janficko.moboole.util.UnitUtil;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements MainContract.View {
 
-	private static final String TAG = MainActivity.class.getSimpleName();
-	private FragmentTransaction fragmentTransaction;
-	private FrontpageFragment frontpageFragment;
-	private SubmarkFragment submarkFragment;
-	private SearchFragment searchFragment;
-	private ProfileFragment profileFragment;
-	private int currentTab;
+    private static final String SELECTED_BOTTOM_BAR_ITEM = "SELECTED_BOTTOM_BAR_ITEM";
 
-	@BindView(R.id.coordinatorLayout)
-	CoordinatorLayout coordinatorLayout;
-	@BindView(R.id.bottom_bar)
-	BottomBar bottomBar;
-	@BindView(R.id.toolbar)
-	Toolbar toolbar;
+	private FrontPageFragment frontPageFragment;
+
+	@BindView(R.id.v_main_bottom_bar_divider)
+    View vBottomBarDivider;
+	@BindView(R.id.bb_main)
+    ConstraintLayout clBottomBar;
+	@BindView(R.id.iv_frontpage)
+    ImageView ivFrontpage;
+	@BindView(R.id.iv_submark)
+    ImageView ivSubmark;
+	@BindView(R.id.iv_search)
+    ImageView ivSearch;
+	@BindView(R.id.iv_profile)
+    ImageView ivProfile;
 
 	public static void start(Context context) {
 	    Intent starter = new Intent(context, MainActivity.class);
@@ -54,132 +49,66 @@ public class MainActivity extends BaseActivity {
 		return R.layout.activity_main;
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-		setupToolbar();
-		setupBottomBar();
+        if(savedInstanceState == null){
+            ivFrontpage.setSelected(true);
+            onBottomBarItemClicked(findViewById(R.id.iv_frontpage));
+            switchFragments(null, null);
+        } else {
+            /* Restore instance of selected bottom bar item. */
+            onBottomBarItemClicked(findViewById(savedInstanceState.getInt(SELECTED_BOTTOM_BAR_ITEM)));
+        }
+    }
 
-		if (!NetworkUtil.isNetworkAvailable(this)) {
-			SnackbarUtil.snackbarNoInternet(this, coordinatorLayout);
-            Log.d(TAG, "false");
-		}
-		/*AuthenticationState state = AuthenticationManager.get().checkAuthState();
-		Logger.print(TAG, "AuthenticationState for onResume(): " + state);
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
-		switch (state) {
-			case READY:
-				break;
-			case NONE:
-				Toast.makeText(MainActivity.this, "Log in first", Toast.LENGTH_SHORT).show();
-				break;
-			case NEED_REFRESH:
-				refreshAccessTokenAsync();
-				break;
-			default:
-				Logger.printError(TAG, "State doesn't exist.");
-		}*/
-	}
+        if(ivFrontpage.isSelected()){
+            outState.putInt(SELECTED_BOTTOM_BAR_ITEM, ivFrontpage.getId());
+        } else if(ivSubmark.isSelected()){
+            outState.putInt(SELECTED_BOTTOM_BAR_ITEM, ivSubmark.getId());
+        } else if(ivSearch.isSelected()){
+            outState.putInt(SELECTED_BOTTOM_BAR_ITEM, ivSearch.getId());
+        } else if(ivProfile.isSelected()){
+            outState.putInt(SELECTED_BOTTOM_BAR_ITEM, ivProfile.getId());
+        }
+    }
 
-	private void setupToolbar() {
-		toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
-		setSupportActionBar(toolbar);
-	}
+    @Override
+    public void switchFragments(Fragment fromFragment, Fragment toFragment) {
+        if(fromFragment == null || fromFragment instanceof FrontPageFragment){
+            if(toFragment == null){
+                frontPageFragment = FrontPageFragment.newInstance();
+                new FrontPagePresenter(frontPageFragment);
+                moveToNextFragment(frontPageFragment);
+            }
+        }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.action_sort_subreddit:
-                Log.d(TAG, "Sort subreddit.");
-				break;
-			case R.id.action_search_subreddit:
-                Log.d(TAG, "Search subreddit.");
-				break;
-			default:
-                Log.e(TAG, "Selected menu doesn't exist.");
-		}
-		return false;
-	}
+    @OnClick({ R.id.iv_frontpage, R.id.iv_submark, R.id.iv_search, R.id.iv_profile })
+    @Override
+    public void onBottomBarItemClicked(View view) {
+	    ivFrontpage.setSelected(view.getId() == R.id.iv_frontpage);
+        ivSubmark.setSelected(view.getId() == R.id.iv_submark);
+        ivSearch.setSelected(view.getId() == R.id.iv_search);
+        ivProfile.setSelected(view.getId() == R.id.iv_profile);
+    }
 
-	private void setupBottomBar() {
-		bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-			@Override
-			public void onTabSelected(@IdRes int tabId) {
-				fragmentTransaction = getSupportFragmentManager().beginTransaction();
-				AppBarLayout.LayoutParams toolbarLayout = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
-				switch (tabId) {
-					case R.id.tab_frontpage:
-                        Log.d(TAG, "Frontpage.");
-						toolbarLayout.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL);
-
-						currentTab = R.id.tab_frontpage;
-						frontpageFragment = new FrontpageFragment();
-						fragmentTransaction.replace(R.id.content_container, frontpageFragment);
-						fragmentTransaction.commit();
-						break;
-					case R.id.tab_submark:
-                        Log.d(TAG, "Submark.");
-						toolbarLayout.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED);
-						currentTab = R.id.tab_submark;
-						submarkFragment = new SubmarkFragment();
-						fragmentTransaction.replace(R.id.content_container, submarkFragment);
-						fragmentTransaction.commit();
-						break;
-					case R.id.tab_search:
-                        Log.d(TAG, "Search.");
-						toolbarLayout.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED);
-						currentTab = R.id.tab_search;
-						searchFragment = new SearchFragment();
-						fragmentTransaction.replace(R.id.content_container, searchFragment);
-						fragmentTransaction.commit();
-						break;
-					case R.id.tab_profile:
-                        Log.d(TAG, "Profile.");
-						toolbarLayout.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED);
-						currentTab = R.id.tab_profile;
-						profileFragment = new ProfileFragment();
-						fragmentTransaction.replace(R.id.content_container, profileFragment);
-						fragmentTransaction.commit();
-						break;
-					default:
-                        Log.e(TAG, "Selected tab doesn't exist.");
-				}
-			}
-		});
-	}
-
-	/*public void login(View view) {
-		startActivity(new Intent(this, LoginActivity.class));
-	}
-
-	public void userInfo(View view) {
-		startActivity(new Intent(this, UserInfoActivity.class));
-	}*/
-
-	private void refreshAccessTokenAsync() {
-		/*new AsyncTask<Credentials, Void, Void>() {
-			@Override
-			protected Void doInBackground(Credentials... params) {
-				try {
-					AuthenticationManager.get().refreshAccessToken(MoBoole.CREDENTIALS);
-				} catch (NoSuchTokenException | OAuthException e) {
-					Logger.printError(TAG, "Could not refresh access token" + e);
-				}
-				return null;
-			}
-
-			@Override
-			protected void onPostExecute(Void v) {
-				Logger.print(TAG, "Reauthenticated");
-			}
-		}.execute();*/
-	}
+    @Override
+    public void hideBottomBar(boolean isHidden) {
+        if(isHidden){
+            //clBottomBar.setVisibility(View.GONE);
+            vBottomBarDivider.animate().translationY(UnitUtil.convertDpToPixel(40, this));
+            clBottomBar.animate().translationY(UnitUtil.convertDpToPixel(40, this));
+        } else {
+            //clBottomBar.setVisibility(View.VISIBLE);
+            vBottomBarDivider.animate().translationY(0);
+            clBottomBar.animate().translationY(0);
+        }
+    }
 }

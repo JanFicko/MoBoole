@@ -20,6 +20,12 @@
     <string name="title_intro3">Submark</string>
     <string name="description_intro3">You can save your most favourite subreddit to the \'Submark\' section. Default value is set to /r/all.</string>
 
+    <!-- MAIN -->
+    <string name="bottom_bar_home_icon">Bottom home bar icon</string>
+    <string name="bottom_bar_submark_icon">Bottom submark bar icon</string>
+    <string name="bottom_bar_search_icon">Bottom search bar icon</string>
+    <string name="bottom_bar_profile_icon">Bottom profile bar icon</string>
+
     <!-- ERRORS -->
     <string name="error_no_internet">No internet connection!</string>
 

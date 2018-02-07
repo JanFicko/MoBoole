@@ -9,7 +9,11 @@
     <dimen name="margin_huge">48dp</dimen>
 
     <!-- ONBOARDING -->
+    <dimen name="onboarding_button_height">28dp</dimen>
     <dimen name="onboarding_circle_thickness">4dp</dimen>
     <dimen name="onboarding_circle_radius">0dp</dimen>
+
+    <!-- MAIN -->
+    <dimen name="main_bottom_bar_height">40dp</dimen>
 
 </resources>

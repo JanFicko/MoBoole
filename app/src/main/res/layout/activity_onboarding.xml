@@ -18,7 +18,7 @@
         android:id="@+id/onboarding_tab_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:tabBackground="@drawable/tab_selector"
+        app:tabBackground="@drawable/selector_tab_onboarding"
         app:tabGravity="center"
         app:tabIndicatorHeight="0dp"
         app:layout_constraintBottom_toTopOf="@+id/onboarding_button"
@@ -30,15 +30,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/start_now"
-        android:textAllCaps="true"
-        android:textAppearance="@style/Text.Indigo.Normal"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:selectableItemBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        style="@style/Button.Grey" />
-
+        style="@style/Button.Grey"/>
 
 </android.support.constraint.ConstraintLayout>
